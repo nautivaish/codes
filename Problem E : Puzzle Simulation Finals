@@ -1,0 +1,45 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define pb push_back
+
+int main()
+{
+ long n,i,f,q,j,index,i2;
+ cin>>n;
+
+ vector <int> v;
+ for(i=0;i<n;i++)
+ {
+           cin>>q;
+           v.pb(q);
+ }
+ cin>>q;
+ long a[q];
+ for(j=0;j<q;j++)
+ cin>>a[j];
+ for(j=0;j<q;j++)
+ {
+           f=1;
+           for(i=0;i<n;i++)
+           {
+                     if(a[j]==v[i])
+                     {
+                               index=i+1;
+                               break;
+                     }
+           }
+           i2=index;
+           for(;i2%2==0;i2/=2)
+           f*=2;
+           f/=2;
+           if(f==0)
+           cout<<"LEFT=NULL\nRIGHT=NULL\n";
+           else
+           {
+                     cout<<"LEFT="<<v[index-1-f];
+                     cout<<"\nRIGHT="<<v[index-1+f]<<"\n";
+           }
+           cout<<"\n";
+ }
+  return 0;
+}
