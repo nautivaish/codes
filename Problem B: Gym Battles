@@ -1,0 +1,41 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define pb push_back
+int main(){
+          int n,i,j,magic;
+          cin>>n;
+          int check[n],prev[n],weight[n],sum[n];
+          for(i=0;i<n;i++)
+          {
+                    sum[i]=0;
+                    check[i]=0;
+                    prev[i]=-1;
+          }
+          prev[0]=-1;
+          for(i=1;i<n;i++)
+          {
+                  cin>>prev[i];  
+                  check[prev[i]]=1;
+          }
+         for(i=0;i<n;i++)
+         cin>>weight[i];
+         cin>>magic;
+         for(i=0;i<n;i++)
+         {
+                   if(check[i]==0)
+                   {
+                             j=i;
+                             for(;j!=0;j=prev[j])
+                             sum[i]+=weight[j];
+                             sum[i]+=weight[0];
+                             if(sum[i]==magic)
+                             {
+                                    j=i;
+                                    for(;j!=0;j=prev[j])
+                                    cout<<j<<" ";
+                                    cout<<"0\n";
+                             }
+                   }
+         }
+  return 0;
+}
