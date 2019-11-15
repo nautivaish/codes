@@ -1,0 +1,50 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define pb push_back
+int main(){
+          int n,i,j,u,q,v;
+          int c[n];
+          char ch;
+          cin>>n;
+          int check[n],prev[n],weight[n],s[n];
+          for(i=0;i<n;i++)
+          s[i]=check[i]=0;
+          prev[0]=-1;
+          weight[0]=0;
+          check[0]=1;
+          for(i=0;i<n-1;i++)
+          {
+                    cin>>u>>v;
+                    cin>>ch;
+                    if(ch=='L')
+                    c[v]=-1;
+                    else c[v]=1;
+                    prev[v]=u;
+          }
+          for(i=1;i<n;i++)
+          {
+                    if(check[prev[i]]==1 && s[i]==0)
+                    {
+                              check[i]=1;
+                              s[i]=1;
+                              weight[i]=weight[prev[i]]+c[i];
+                              i=1;
+                    }
+          }
+          cin>>q;
+          for(i=0;i<q;i++)
+          {
+                    u=0;
+                    cin>>v;
+                    for(j=0;j<n;j++)
+                    if(weight[j]==v)
+                    {
+                         cout<<j<<" ";
+                         u++;
+                    }
+                    if(u==0)
+                    cout<<"No Nodes";
+                    cout<<"\n";
+          }
+  return 0;
+}
