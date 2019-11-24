@@ -1,0 +1,52 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define pb push_back
+int n;
+
+int check[150],previous[150],weight[150];
+int calcwt(int a,vector <int> vec[])
+{
+          if(check[a]==0)
+          return weight[a];
+          else {
+                    for(int i=0;i<vec[a].size();i++)
+                    {
+                              weight[vec[a][i]]=calcwt(vec[a][i],vec);
+                              weight[a]+=weight[vec[a][i]];
+                              check[vec[a][i]]=0;
+                              
+                    }
+                    return weight[a];
+          }
+}
+int main(){
+          vector <int> next[150];
+          int i,j,k,min=100000,u,v;
+          cin>>n;
+          for(i=0;i<n;i++)
+          {
+                    check[i]=0;
+                    previous[i]=0;
+          }
+          previous[0]=-1;
+          for(i=0;i<n-1;i++)
+          {
+                    cin>>u>>v;
+                    check[u]=1;
+                    previous[v]=u;
+                    next[u].pb(v);
+          }
+          for(i=0;i<n;i++)
+          cin>>weight[i];
+          weight[0]=calcwt(0,next);
+          for(i=0;i<n;i++)
+          {
+                    if(weight[i]<min)
+                    {
+                              min=weight[i];
+                              j=i;
+                    }
+          }
+          cout<<j<<" "<<weight[j];
+          return 0;
+}
