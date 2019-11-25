@@ -1,0 +1,66 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define pb push_back
+int check[1024],u[1024],v[1024],weight[1024],edges[1024][2],isroot[1024];
+int calcwt(int a,int edges[][2])
+{
+          if(isroot[a]==0)
+          return weight[a];
+          else {
+                    for(int i=0;i<2;i++)
+                    {
+                              if()
+                              
+                    }
+                    return weight[a];
+          }
+}
+int main(){
+          int n,m,i,j=-1,maxw=-100000,k,sum=0;
+          cin>>n;
+          char ch[n];
+          
+          for(i=0;i<n;i++)
+          check[i]=edges[i][0]=edges[i][1]=isroot[i]=0;
+          for(i=0;i<n-1;i++)
+          {
+                    cin>>u[i]>>v[i]>>ch[i];
+                    check[u[i]]=isroot[u[i]]=1;
+                    if(ch[i]=='L')
+                    {
+                              edges[u[i]][0]=v[i];
+                    }
+                    else 
+                              edges[u[i]][1]=v[i];
+
+          }
+          for(i=0;i<n;i++)
+          cin>>weight[i];
+          for(i=0;i<n;i++)
+          {
+                    if(edges[i][0]>0 && edges[i][1]>0)
+                    if(check[edges[i][0]]==0 && check[edges[i][1]]==0)
+                    if(weight[i]>weight[edges[i][0]] && weight[i]<weight[edges[i][1]])
+                    {
+                              check[i]=0;
+                              i=0;
+                    }
+          }
+          weight[0]=calcwt(0);
+          for(i=0;i<n;i++)
+          {
+                    if(isroot[i] && check[i]==0)
+                    {
+                          if(weight[i]>maxw)
+                          {
+                                    maxw=weight[i];
+                                    j=i;
+                          }
+                    }
+                    
+          }
+          if(j==-1)
+          cout<<"No Such Node Exists";
+          else cout<<j;
+          return 0;
+}
