@@ -1,0 +1,40 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define pb push_back
+int main(){
+          int n,m,i,j,u,v,d,md,k,sum=0,l;
+          cin>>n>>m;
+          int check[n],distance[n][n];
+          vector <int> edge[n];
+          for(i=0;i<n;i++){
+                    check[i]=0;
+                    for(j=0;j<n;j++)
+                    (i==j)?distance[i][j]=0:distance[i][j]=100000;
+          }
+          
+          for(i=0;i<m;i++)
+          {
+                    cin>>u>>v>>d;
+                    distance[u][v]=distance[v][u]=d;
+          }
+          md=100000;
+          for(l=0;l<n;l++)
+          for(i=0;i<n;i++)
+          {
+                   
+                    for(j=0;j<n;j++)
+                    {
+                               md=100000;
+                              for(k=0;k<n;k++)
+                              md=min(distance[i][k]+distance[k][j],md);
+                              distance[i][j]=distance[j][i]=md;
+                    }
+          }
+          for(i=0;i<n;i++)
+          {
+                    for(j=i;j<n;j++)
+                    sum+=distance[i][j];
+          }
+          cout<<sum;
+          return 0;
+}
