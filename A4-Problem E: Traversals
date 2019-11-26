@@ -1,0 +1,54 @@
+#include <bits/stdc++.h> 
+using namespace std; 
+int n,i,j,k,q;
+int in[1024],pre[1024];
+int search(int a,int arr[])
+{
+          for(int i=0;i<n;i++)
+          if(arr[i]==a)
+          return i;
+}
+void findchild(int root,int positionin,int shift,int l, int r,int left[],int right[]){
+          if(positionin>l)
+          {
+                    int j=search(root,pre);
+                    left[root]=pre[j+1];
+                    int posin=search(left[root],in);
+                    findchild(left[root],posin,shift+1,l,positionin-1,left,right);
+          }
+          else left[root]=-1;
+          if(positionin<r)
+          {
+                    int j=search(root,in);
+                    right[root]=pre[j+1+shift];
+                    int posin=search(right[root],in);
+                    findchild(right[root],posin,shift,positionin+1,r,left,right);
+          }
+          else right[root]=-1;
+}
+int main(){
+          int v,l,r,left[1024],right[1024];
+          for(i=0;i<n;i++)
+          left[i]=right[i]=-1;
+          k=0;
+          cin>>n;
+          for(i=0;i<n;i++)
+          cin>>in[i];
+          for(i=0;i<n;i++)
+          cin>>pre[i];
+          l=0;r=n-1;
+          int posin=search(pre[0],in);
+          findchild(pre[0],posin,k,l,r,left,right);
+          cin>>q;
+          while(q--)
+          {
+                    cin>>v;
+                    if(left[v]>-1)
+                    cout<<left[v]<<" ";
+                    else cout<<"X ";
+                    if(right[v]>-1)
+                    cout<<right[v]<<" \n";
+                    else cout<<"X \n";
+                    
+          }
+}
