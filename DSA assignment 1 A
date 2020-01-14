@@ -1,0 +1,47 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define ll long long
+#define pb push_back
+#define mp make_pair
+
+int main()
+{
+	ll n,m,i,j,k,x,y,l,f=1;
+	cin>>n>>m;
+	ll a[n][m];
+	for(i=0;i<n;i++)
+	for(j=0;j<m;j++)
+	cin>>a[i][j];
+	cin>>x>>y;
+	ll b[x][y];
+	for(i=0;i<x;i++)
+	for(j=0;j<y;j++)
+		cin>>b[i][j];
+	for(i=0;i<=(n-x);i++)
+	for(j=0;j<=(m-y);j++)
+	{
+	                    f=1;
+			if(a[i][j]==b[0][0])
+			{
+                                         for(k=0;k<x;k++)
+                                         for(l=0;l<y;l++)
+                                        
+                                        if(b[k][l]!=a[i+k][j+l])
+                                        {
+                                        	f=0;
+                                        break;
+                                        } 
+                                        
+                                        if(f==1)
+                                        {
+                                        		cout<<"YES\n";
+                                        	cout<<i<<" "<<j;
+                                        	return 0;
+                                        }
+                              }
+	}
+cout<<"NO";
+	return 0;
+}
+	
+
